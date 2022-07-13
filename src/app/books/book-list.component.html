@@ -1,0 +1,30 @@
+<div class="col-10 mx-auto card">
+    <div class="card-header display-6">
+        {{ title }}
+    </div>
+    <div class="card-body text-start">
+        <div class="d-flex flex-row justify-content-end align-items-center mt-3">
+            <div class="me-2">Filter:</div>
+            <div><input type="text"
+                [(ngModel)]='listFilter'></div>
+        </div>
+        <table class="table table-striped mt-3" *ngIf="books.length">
+            <thead>
+                <tr>
+                    <th>
+                        Book Title
+                    </th>
+                    <th>
+                        Book Author
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="text-start">
+                <tr *ngFor="let book of filteredBooks">
+                    <td>{{book.title}}</td>
+                    <td>{{book.author}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
