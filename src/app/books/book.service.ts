@@ -7,6 +7,30 @@ import { Observable, catchError, tap, throwError } from "rxjs";
     providedIn: 'root'
 })
 export class BookService {
+
+    private bookUrl = 'https://cranewaredemo20220712135732.azurewebsites.net/api/book';
+    // private bookUrl = 'https://localhost:44315/api/book';
+
+    constructor(private http: HttpClient) {}
+
+    getBooks(): Observable<IBook[]> {
+        return this.http.get<IBook[]>(this.bookUrl).pipe(
+            tap(data => console.log('All: ', JSON.stringify(data))),
+            catchError(this.handleError)
+        );
+    }
+
+    private handleError(err: HttpErrorResponse) {
+        let errorMessage = '';
+        if (err.error instanceof ErrorEvent) {
+            errorMessage = `An error occured: ${err.error.message}`;
+        } else {
+            errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
+        }
+        console.error(errorMessage);
+        return throwError(()=>errorMessage);
+    } 
+
     /* getBooks(): IBook[] {
         return [
             {
@@ -42,27 +66,4 @@ export class BookService {
         ]
     } */
 
-
-
-    private bookUrl = 'https://cranewaredemo20220712135732.azurewebsites.net/api/book';
-
-    constructor(private http: HttpClient) {}
-
-    getBooks(): Observable<IBook[]> {
-        return this.http.get<IBook[]>(this.bookUrl).pipe(
-            tap(data => console.log('All: ', JSON.stringify(data))),
-            catchError(this.handleError)
-        );
-    }
-
-    private handleError(err: HttpErrorResponse) {
-        let errorMessage = '';
-        if (err.error instanceof ErrorEvent) {
-            errorMessage = `An error occured: ${err.error.message}`;
-        } else {
-            errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
-        }
-        console.error(errorMessage);
-        return throwError(()=>errorMessage);
-    } 
 }
