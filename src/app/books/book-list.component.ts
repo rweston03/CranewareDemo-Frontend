@@ -39,21 +39,15 @@ export class BookListComponent implements OnInit{
     }
 
     ngOnInit(): void {
-        this.books = this.bookService.getBooks();
-        this.filteredBooks = this.books;
-
-        /******************************************************* 
-         * 
-         * See note in book.service.cs explaining situation with 
-         * CORS.
-         * 
-         * *****************************************************         
+        /*this.books = this.bookService.getBooks();
+        this.filteredBooks = this.books; */
+      
         this.bookService.getBooks().subscribe({
             next: books => {
                 this.books = books;
                 this.filteredBooks = this.books;
             },
             error: err => this.errorMessage = err
-        }) */
+        }) 
     }
 }
