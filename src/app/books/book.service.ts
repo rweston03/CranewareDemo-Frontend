@@ -23,6 +23,21 @@ export class BookService {
                 "id": 3,
                 "title": "1984",
                 "author": "George Orwell"
+            },
+            {
+                "id": 4,
+                "title": "Frankenstein",
+                "author": "Mary Shelley"
+            },
+            {
+                "id": 5,
+                "title": "The Gunslinger",
+                "author": "Stephen King"
+            },
+            {
+                "id": 6,
+                "title": "The Martian Chronicles",
+                "author": "Ray Bradbury"
             }
         ]
     }
